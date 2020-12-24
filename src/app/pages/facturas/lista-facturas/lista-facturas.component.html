@@ -1,0 +1,38 @@
+<div class="p-mt-3 p-mb-3 p-grid">
+    <div class="p-text-left p-mt-1 p-col">
+        <h1>Facturas</h1>
+    </div>
+    <div class="p-text-right p-mt-2 p-col">
+        <p-button label="Nueva factura" icon="pi pi-plus-circle" styleClass="p-button-sm p-button-raised"></p-button>
+    </div>
+</div>
+
+<div class="card">
+    <p-table [value]="facturas" styleClass="p-datatable-sm" [lazy]="true" (onLazyLoad)="loadCustomers($event)" [paginator]="true" [rows]="5" [totalRecords]="totalRecords" [loading]="loading">
+        <ng-template pTemplate="header">
+            <tr>
+                <th width="5%">Nº</th>
+                <th width="15%">Fecha</th>
+                <th width="20%">Cliente</th>
+                <th width="25%">Trabajador</th>
+                <th width="15%">Importe</th>
+                <th width="20%"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-factura>
+            <tr>
+                <td>{{ factura.numero }}</td>
+                <td>{{ factura.fecha | date:"dd/MM/yyyy" }}</td>
+                <td>{{ factura.cliente }}</td>
+                <td>{{ factura.trabajador }}</td>
+                <td>{{ factura.importeTotal | currency:'€ ':'symbol':'.2-2' }}</td>
+                <td class="p-text-right">
+                    <button pButton pRipple icon="pi pi-file-pdf" class="p-button-rounded p-button-danger p-mr-2"></button>
+                    <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-mr-2"></button>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-mr-2"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-icon-only p-mr-2"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
